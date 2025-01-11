@@ -11,5 +11,35 @@ public class BlackjackDealer{
 
     public BlackjackDealer(BlackjackPlayer p){this.player = p;}
 
+    public void hitDealer(){this.dealerHand.add(decks.dealTopCard());}
+
+    public void hitPlayer(){
+        Card c = decks.dealTopCard();
+        this.playerHand.add(c.clone());
+        player.cards[player.numCards++] = c.clone();
+    }
+
+    public Card getVisibleCard(){
+        return dealerHand.get(0);
+    }
+
+    public int cardsLeft(){
+        return decks.cardsLeft();
+    }
+
+    public void playHand(){
+
+    }
+    public int handScore(){
+
+    }
+
+    public boolean verifyChips(){
+        return player.getChips() == this.playerChips;
+    }
+    public int setPlayerChips(int chips){
+        this.playerChips = chips;
+    }
+
 
 }
