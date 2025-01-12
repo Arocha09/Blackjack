@@ -12,7 +12,7 @@ public class Deck {
         int i = 0;
         for(int r = 1; r <= 13; r++) {
             for(Card.Suit s : Card.Suit.values()) {
-                deck[i] = new Card(r, s);
+                deck[i] = new Card(s.name(), r);
                 i++;
             }
         }
@@ -34,7 +34,7 @@ public class Deck {
     }
 
     public Card dealTopCard(){
-        if(top > = deck.length){
+        if(top >= deck.length){
             restockDeck();
         }
         top++;

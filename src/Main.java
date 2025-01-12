@@ -1,6 +1,5 @@
 
-public class Main {
-
+public class Main{
     public static void main(String[] args) {
         System.out.println("Let's play some blackjack!");
 
@@ -16,5 +15,4 @@ public class Main {
         System.out.println("_____________SUMMARY_______________");
         System.out.println("FINAL CHIP COUNT: " + p.getChips());
     }
-
 }

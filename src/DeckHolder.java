@@ -32,7 +32,7 @@ public class DeckHolder {
             decks[i].shuffle();
         }
         count = 0;
-        decknum = 0;
+        deckNum = 0;
     }
     public int cardsLeft(){
         int cards = 0;

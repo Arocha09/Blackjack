@@ -8,7 +8,7 @@ public class Card {
     private int rank;
 
     public Card(){
-        this.suit = Suit.Spades;
+        this.suit = Suit.Spades.name();
         this.rank = 1;
     }
     public Card(String suit, int rank) {
@@ -27,7 +27,7 @@ public class Card {
         this.rank = newRank;
     }
 
-    private void setSuit(Suit newSuit){
+    private void setSuit(String newSuit){
         this.suit = newSuit;
     }
 

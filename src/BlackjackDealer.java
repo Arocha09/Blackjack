@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class BlackjackDealer{
-    private BlackJackPlayer player;
+    private BlackjackPlayer player;
     private ArrayList<Card> dealerHand = new ArrayList<Card>();
     private ArrayList<Card> playerHand = new ArrayList<Card>();
 
     int playerChips;
 
-    private DeckHolder decks = new DeckHolder(0);
+    private DeckHolder decks = new DeckHolder(3);
 
     public BlackjackDealer(BlackjackPlayer p){this.player = p;}
 
@@ -27,13 +27,13 @@ public class BlackjackDealer{
         return decks.cardsLeft();
     }
 
-    public void playHand(){
-        this.player.cards = new Card[this.player.cards.length()];
+    public void playHand(int handNum){
+        this.player.cards = new Card[this.player.cards.length];
         this.player.numCards = 0;
         this.dealerHand.clear();
         this.playerHand.clear();
 
-        if(decks.cardsLeeft() < 18){
+        if(decks.cardsLeft() < 18){
             decks.restoreDecks();
         }
 
@@ -64,11 +64,11 @@ public class BlackjackDealer{
 
         }
 
-        while(handscore(this.dealerHand) < 17){
+        while(handScore(this.dealerHand) < 17){
             hitDealer();
         }
 
-        int dealerScore = handscore(this.dealerHand);
+        int dealerScore = handScore(this.dealerHand);
         int playerScore = handScore(this.playerHand);
 
         System.out.println("END OF ROUND # " + handNum);
@@ -99,9 +99,9 @@ public class BlackjackDealer{
         }
 
         System.out.println("Dealer Hand: " + this.dealerHand);
-        System.out.println("Dealer Score: " + d + "\n");
+        System.out.println("Dealer Score: " + dealerScore + "\n");
         System.out.println("Player Hand: " + this.playerHand);
-        System.out.println("Player Score: " + p);
+        System.out.println("Player Score: " + playerScore);
         System.out.println("Player Chips After: " + (this.player.getChips()) + "\n");
 
         Card[] dHand = new Card[this.dealerHand.size()];
@@ -109,22 +109,21 @@ public class BlackjackDealer{
             dHand[i] = this.dealerHand.get(i).clone();
         this.player.handOver(dHand);
     }
+
     public int handScore(ArrayList<Card> cards){
         int totalScore = 0;
         int numAces = 0;
-        Card c;
-        for(int i = 0; i < cards.length; i++){
-            c = Cards[i];
+        for(Card c : cards){
             int rank = c.getRank();
-            if (rank > 10){
+            if (rank > 10)
                 rank = 10;
-            }
-            if (rank == 1){
+            if (rank == 1) {
                 numAces++;
                 rank = 11;
             }
             totalScore += rank;
         }
+
         while(totalScore > 21 && numAces > 0){
             totalScore -= 10;
             numAces--;
@@ -135,7 +134,7 @@ public class BlackjackDealer{
     public boolean verifyChips(){
         return player.getChips() == this.playerChips;
     }
-    public int setPlayerChips(int chips){
+    public void setPlayerChips(int chips){
         this.playerChips = chips;
     }
 

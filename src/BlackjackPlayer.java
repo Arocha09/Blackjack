@@ -2,14 +2,14 @@ public abstract class BlackjackPlayer {
 
     private int chips = 1000;
 
-    protected Cards[] cards = new Card[22];
+    protected Card[] cards = new Card[22];
     protected int numCards;
 
-    public BlackJackDealer dealer;
+    public BlackjackDealer dealer;
 
     public abstract int getBet();
     public abstract Move getMove();
-    public abstract void handover(Card[] dealerHand);
+    public abstract void handOver(Card[] dealerHand);
 
     public int getChips(){return chips;}
 
@@ -21,8 +21,8 @@ public abstract class BlackjackPlayer {
         int totalScore = 0;
         int numAces = 0;
         Card c;
-        for(int i = 0; i < cards.length; i++){
-            c = Cards[i];
+        for(int i = 0; i < numCards; i++){
+            c = cards[i];
             int rank = c.getRank();
             if (rank > 10){
                 rank = 10;
@@ -40,7 +40,7 @@ public abstract class BlackjackPlayer {
         return totalScore;
     }
 
-    public void setDealer(BlackJackDealer dealer){
+    public void setDealer(BlackjackDealer dealer){
         this.dealer = dealer;
         dealer.setPlayerChips(chips);
     }
